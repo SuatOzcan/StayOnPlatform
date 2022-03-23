@@ -17,6 +17,8 @@ public class Brain : MonoBehaviour {
         if (obj.gameObject.tag == "dead")
         {
 			alive = false;
+			timeAlive = 0;
+			timeWalking = 0;
         }
     }
 
@@ -53,13 +55,13 @@ public class Brain : MonoBehaviour {
         if (seeGround)
         {
 			//make move relative to character and always move forward.
-			if (dna.GetGene(0) == 0) move = 1;
+			if (dna.GetGene(0) == 0) { move = 1; timeWalking += 1; }
 			else if (dna.GetGene(0) == 1) turn = -90;
 			else if (dna.GetGene(0) == 2) turn = 90;
         }
         else
         {
-			if (dna.GetGene(1) == 0) move = 1;
+			if (dna.GetGene(1) == 0) { move = 1; timeWalking += 1; }
 			else if (dna.GetGene(1) == 1) turn = -90;
 			else if (dna.GetGene(1) == 2) turn = 90;
         }
